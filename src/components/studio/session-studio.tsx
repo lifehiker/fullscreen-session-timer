@@ -69,7 +69,7 @@ const presetOptions = [
 function cloneSegments(segments: SegmentInput[]): SegmentInput[] {
   return segments.map((segment, index) => ({
     ...segment,
-    id: generateId(),
+    id: segment.id || `segment-${index + 1}`,
     order: index,
   }));
 }

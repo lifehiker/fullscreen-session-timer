@@ -117,8 +117,8 @@ export function SegmentListEditor({ segments, onChange }: SegmentListEditorProps
 
   return (
     <div className="space-y-2">
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <SortableContext items={segments.map((s) => s.id)} strategy={verticalListSortingStrategy}>
+      <DndContext id="segment-list-dnd" sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext id="segment-list-sortable" items={segments.map((s) => s.id)} strategy={verticalListSortingStrategy}>
           {segments.map((seg) => (
             <SegmentItem
               key={seg.id}

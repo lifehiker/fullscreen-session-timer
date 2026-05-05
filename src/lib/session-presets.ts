@@ -1,5 +1,4 @@
 import type { IntervalSettings, SegmentInput, TimerMode } from "@/types/timer";
-import { generateId } from "@/lib/timer-utils";
 
 export interface SessionBlueprint {
   title: string;
@@ -13,7 +12,7 @@ function buildSegments(
   segments: Array<{ name: string; minutes: number; seconds?: number; type?: SegmentInput["type"] }>
 ): SegmentInput[] {
   return segments.map((segment, index) => ({
-    id: generateId(),
+    id: `preset-segment-${index + 1}`,
     name: segment.name,
     durationSeconds: segment.minutes * 60 + (segment.seconds ?? 0),
     order: index,
