@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 228 34% 8%;
+    --foreground: 37 41% 87%;
+    --card: 228 30% 12%;
+    --card-foreground: 37 41% 87%;
+    --popover: 229 30% 11%;
+    --popover-foreground: 37 41% 87%;
+    --primary: 11 79% 61%;
+    --primary-foreground: 225 27% 12%;
+    --secondary: 224 19% 18%;
+    --secondary-foreground: 37 41% 87%;
+    --muted: 226 17% 16%;
+    --muted-foreground: 34 17% 67%;
+    --accent: 12 70% 16%;
+    --accent-foreground: 37 41% 87%;
+    --destructive: 0 72% 56%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 228 18% 25%;
+    --input: 228 16% 24%;
+    --ring: 11 79% 61%;
+    --radius: 1rem;
+    --paper: #f2eada;
+    --ink: #161b29;
+    --signal: #ff8452;
+    --signal-soft: #ffd296;
+  }
+
+  .dark {
+    --background: 228 34% 8%;
+    --foreground: 37 41% 87%;
+    --card: 228 30% 12%;
+    --card-foreground: 37 41% 87%;
+    --popover: 229 30% 11%;
+    --popover-foreground: 37 41% 87%;
+    --primary: 11 79% 61%;
+    --primary-foreground: 225 27% 12%;
+    --secondary: 224 19% 18%;
+    --secondary-foreground: 37 41% 87%;
+    --muted: 226 17% 16%;
+    --muted-foreground: 34 17% 67%;
+    --accent: 12 70% 16%;
+    --accent-foreground: 37 41% 87%;
+    --destructive: 0 72% 56%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 228 18% 25%;
+    --input: 228 16% 24%;
+    --ring: 11 79% 61%;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(255, 132, 82, 0.16), transparent 28%),
+      radial-gradient(circle at 80% 10%, rgba(255, 221, 180, 0.12), transparent 24%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent 45%),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.03) 0,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 92px
+      ),
+      linear-gradient(180deg, #0a0d16, #101425 52%, #0c101a);
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(255, 132, 82, 0.4);
+    color: var(--paper);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), serif;
+  }
+
+  .font-body {
+    font-family: var(--font-body), sans-serif;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono), monospace;
+  }
+
+  .cue-panel {
+    position: relative;
+    backdrop-filter: blur(18px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .cue-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 24%),
+      radial-gradient(circle at top right, rgba(255, 210, 150, 0.12), transparent 24%);
+    opacity: 0.8;
+  }
+
+  .hero-chip {
+    @apply cue-panel flex items-start gap-3 rounded-[1.5rem] border border-white/10 bg-[rgba(255,255,255,0.04)] p-4;
+  }
+}
