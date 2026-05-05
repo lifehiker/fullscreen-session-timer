@@ -85,11 +85,38 @@ export function FullscreenTimer({ className }: FullscreenTimerProps) {
   }, []);
 
   useEffect(() => {
-    if (!("wakeLock" in navigator)) return;
+    if (!isRunning || !("wakeLock" in navigator)) return;
+
+    let released = false;
     let lock: WakeLockSentinel | null = null;
-    navigator.wakeLock.request("screen").then((l) => { lock = l; }).catch(() => {});
-    return () => { lock?.release(); };
-  }, []);
+
+    const requestWakeLock = async () => {
+      if (document.visibilityState !== "visible") return;
+      try {
+        lock = await navigator.wakeLock.request("screen");
+        lock.addEventListener("release", () => {
+          lock = null;
+        });
+      } catch {}
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible" && !lock && !released) {
+        void requestWakeLock();
+      }
+    };
+
+    void requestWakeLock();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      released = true;
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      if (lock) {
+        void lock.release().catch(() => {});
+      }
+    };
+  }, [isRunning]);
 
   return (
     <div
@@ -104,6 +131,8 @@ export function FullscreenTimer({ className }: FullscreenTimerProps) {
         variant="ghost"
         size="icon"
         onClick={toggleFullscreen}
+        aria-label={isFullscreen ? "Exit fullscreen timer" : "Enter fullscreen timer"}
+        title={isFullscreen ? "Exit fullscreen timer" : "Enter fullscreen timer"}
         className={cn("absolute right-4 top-4 z-20 opacity-80 backdrop-blur transition hover:opacity-100", themeStyle.control)}
       >
         {isFullscreen ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}

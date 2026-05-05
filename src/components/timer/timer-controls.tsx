@@ -19,7 +19,15 @@ export function TimerControls({ className, size = "default", showVolumeToggle = 
   return (
     <div className={cn("flex items-center gap-3", className)}>
       {segments.length > 1 && (
-        <Button variant="ghost" size="icon" onClick={previousSegment} disabled={currentSegmentIndex === 0} className="opacity-70 hover:opacity-100">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={previousSegment}
+          disabled={currentSegmentIndex === 0}
+          aria-label="Previous segment"
+          title="Previous segment"
+          className="opacity-70 hover:opacity-100"
+        >
           <SkipBack className={iconSize} />
         </Button>
       )}
@@ -46,19 +54,34 @@ export function TimerControls({ className, size = "default", showVolumeToggle = 
       )}
 
       {segments.length > 1 && (
-        <Button variant="ghost" size="icon" onClick={nextSegment} disabled={currentSegmentIndex >= segments.length - 1} className="opacity-70 hover:opacity-100">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={nextSegment}
+          disabled={currentSegmentIndex >= segments.length - 1}
+          aria-label="Next segment"
+          title="Next segment"
+          className="opacity-70 hover:opacity-100"
+        >
           <SkipForward className={iconSize} />
         </Button>
       )}
 
       {(isRunning || isPaused) && (
-        <Button variant="ghost" size="icon" onClick={reset} className="opacity-70 hover:opacity-100">
+        <Button variant="ghost" size="icon" onClick={reset} aria-label="Reset timer" title="Reset timer" className="opacity-70 hover:opacity-100">
           <RotateCcw className={iconSize} />
         </Button>
       )}
 
       {showVolumeToggle && (
-        <Button variant="ghost" size="icon" onClick={toggleSound} className="opacity-70 hover:opacity-100">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleSound}
+          aria-label={soundEnabled ? "Mute audio cues" : "Enable audio cues"}
+          title={soundEnabled ? "Mute audio cues" : "Enable audio cues"}
+          className="opacity-70 hover:opacity-100"
+        >
           {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
         </Button>
       )}

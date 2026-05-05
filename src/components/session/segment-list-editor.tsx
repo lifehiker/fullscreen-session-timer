@@ -26,44 +26,59 @@ function SegmentItem({ segment, disableDelete, onDelete, onChange }: SegmentItem
   const seconds = segment.durationSeconds % 60;
 
   return (
-    <div ref={setNodeRef} style={style} className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-3">
-      <button {...attributes} {...listeners} className="cursor-grab touch-none opacity-40 hover:opacity-70">
-        <GripVertical className="h-4 w-4" />
-      </button>
-      <Input
-        value={segment.name}
-        onChange={(e) => onChange(segment.id, "name", e.target.value)}
-        placeholder="Segment name"
-        className="flex-1"
-      />
-      <Input
-        type="number"
-        value={minutes}
-        onChange={(e) => onChange(segment.id, "minutes", e.target.value)}
-        min={0}
-        max={99}
-        className="w-16 text-center"
-        placeholder="m"
-      />
-      <span className="text-muted-foreground">:</span>
-      <Input
-        type="number"
-        value={seconds}
-        onChange={(e) => onChange(segment.id, "seconds", e.target.value)}
-        min={0}
-        max={59}
-        className="w-16 text-center"
-        placeholder="s"
-      />
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={() => onDelete(segment.id)}
-        disabled={disableDelete}
-        className="text-destructive hover:text-destructive disabled:opacity-30"
-      >
-        <Trash2 className="h-4 w-4" />
-      </Button>
+    <div ref={setNodeRef} style={style} className="rounded-2xl border border-white/10 bg-white/5 p-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="flex min-w-0 items-center gap-2 sm:flex-1">
+          <button
+            {...attributes}
+            {...listeners}
+            aria-label={`Reorder ${segment.name}`}
+            className="shrink-0 cursor-grab touch-none opacity-40 hover:opacity-70"
+          >
+            <GripVertical className="h-4 w-4" />
+          </button>
+          <Input
+            value={segment.name}
+            onChange={(e) => onChange(segment.id, "name", e.target.value)}
+            placeholder="Segment name"
+            className="min-w-0 flex-1"
+          />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => onDelete(segment.id)}
+            disabled={disableDelete}
+            aria-label={`Delete ${segment.name}`}
+            className="shrink-0 text-destructive hover:text-destructive disabled:opacity-30"
+          >
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="flex items-center gap-2 sm:w-auto">
+          <Input
+            type="number"
+            value={minutes}
+            onChange={(e) => onChange(segment.id, "minutes", e.target.value)}
+            min={0}
+            max={99}
+            aria-label={`${segment.name} minutes`}
+            className="h-11 w-full text-center sm:w-16"
+            placeholder="m"
+          />
+          <span className="text-muted-foreground">:</span>
+          <Input
+            type="number"
+            value={seconds}
+            onChange={(e) => onChange(segment.id, "seconds", e.target.value)}
+            min={0}
+            max={59}
+            aria-label={`${segment.name} seconds`}
+            className="h-11 w-full text-center sm:w-16"
+            placeholder="s"
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -116,7 +131,7 @@ export function SegmentListEditor({ segments, onChange }: SegmentListEditorProps
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <DndContext id="segment-list-dnd" sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext id="segment-list-sortable" items={segments.map((s) => s.id)} strategy={verticalListSortingStrategy}>
           {segments.map((seg) => (

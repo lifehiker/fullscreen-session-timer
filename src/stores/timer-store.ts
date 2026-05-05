@@ -154,6 +154,9 @@ function playBeep(final: boolean) {
     osc.type = "sine";
     gain.gain.setValueAtTime(0.3, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (final ? 0.8 : 0.3));
+    osc.onended = () => {
+      void ctx.close().catch(() => {});
+    };
     osc.start(ctx.currentTime);
     osc.stop(ctx.currentTime + (final ? 0.8 : 0.3));
   } catch {}
