@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "sh -c 'set -a; [ -f ./.env ] && . ./.env; [ -f ./.env.local ] && . ./.env.local; set +a; export AUTH_TRUST_HOST=${AUTH_TRUST_HOST:-1}; mkdir -p .next/standalone/.next && ln -sfn ../../static .next/standalone/.next/static && node .next/standalone/server.js'",
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:generate": "prisma generate"
