@@ -38,6 +38,7 @@ ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 ENV DATABASE_URL="file:/data/app.db"
 ENV AUTH_SECRET="forge-app-default-secret-override-in-production"
+ENV AUTH_TRUST_HOST=1
 ENV NEXT_PUBLIC_APP_URL=""
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
