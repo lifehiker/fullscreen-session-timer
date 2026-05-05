@@ -17,16 +17,8 @@ RUN npm ci
 FROM base AS builder
 
 COPY --from=deps /app/node_modules ./node_modules
-COPY .eslintrc.json ./
-COPY next-env.d.ts ./
-COPY next.config.ts ./
 COPY package.json ./
-COPY postcss.config.mjs ./
-COPY tailwind.config.ts ./
-COPY tsconfig.json ./
-COPY prisma ./prisma
-COPY public ./public
-COPY src ./src
+COPY . .
 
 RUN npm run build \
  && mkdir -p /app/runtime-assets \
@@ -50,6 +42,7 @@ RUN apt-get update \
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/runtime-assets ./
+COPY --from=builder /app/prisma ./prisma
 
 USER nextjs
 

@@ -27,7 +27,7 @@ export function UseCasePage({
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navbar />
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <section className="mb-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <section className="mb-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="space-y-5">
             <Badge className="border-0 bg-[rgba(255,132,82,0.16)] px-3 py-1 font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--signal-soft)]">
               {eyebrow}

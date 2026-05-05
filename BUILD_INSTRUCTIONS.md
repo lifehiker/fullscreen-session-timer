@@ -5,7 +5,7 @@
 - **App Name:** fullscreen-session-timer
 - **Repository:** fullscreen-session-timer
 - **Tech Stack:** Next.js 15 (App Router) + TypeScript + Tailwind + shadcn/ui
-- **Description:** A purpose-built fullscreen timer with large across-the-room digits, named segments, repeating intervals, and always-visible countdowns. It serves presenters, teachers, coaches, and anyone running structured sessions where readability and simplicity matter.
+- **Description:** fullscreen-session-timer
 
 ---
 

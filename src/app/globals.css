@@ -28,6 +28,9 @@
     --ink: #161b29;
     --signal: #ff8452;
     --signal-soft: #ffd296;
+    --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "URW Palladio L", serif;
+    --font-body: "Avenir Next", "Segoe UI", "Helvetica Neue", "Nimbus Sans", sans-serif;
+    --font-mono: "SFMono-Regular", "Menlo", "Monaco", "Liberation Mono", monospace;
   }
 
   .dark {
@@ -50,6 +53,9 @@
     --border: 228 18% 25%;
     --input: 228 16% 24%;
     --ring: 11 79% 61%;
+    --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "URW Palladio L", serif;
+    --font-body: "Avenir Next", "Segoe UI", "Helvetica Neue", "Nimbus Sans", sans-serif;
+    --font-mono: "SFMono-Regular", "Menlo", "Monaco", "Liberation Mono", monospace;
   }
 }
 
