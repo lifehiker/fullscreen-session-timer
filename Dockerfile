@@ -51,4 +51,4 @@ USER nextjs
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "node node_modules/prisma/build/index.js db push --skip-generate && echo 'DB schema initialized' && node server.js"]
+CMD ["sh", "-c", "node node_modules/prisma/build/index.js db push --skip-generate 2>&1 && echo 'DB schema initialized' || echo 'Warning: DB init failed, starting anyway'; node server.js"]
