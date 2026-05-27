@@ -22,7 +22,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { SegmentListEditor } from "@/components/session/segment-list-editor";
+import dynamic from "next/dynamic";
+const SegmentListEditor = dynamic(
+  () => import("@/components/session/segment-list-editor").then((m) => ({ default: m.SegmentListEditor })),
+  { ssr: false }
+);
 import { IntervalBuilderForm } from "@/components/session/interval-builder-form";
 import { FullscreenTimer } from "@/components/timer/fullscreen-timer";
 import { useTimerStore } from "@/stores/timer-store";
