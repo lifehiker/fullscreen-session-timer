@@ -37,7 +37,7 @@
     "bcryptjs": "^2.4.3",
     "stripe": "^17",
     "resend": "^4",
-    "zod": "^3",
+    "zod": "^4",
     "react-hook-form": "^7",
     "@hookform/resolvers": "^3",
     "zustand": "^5",
